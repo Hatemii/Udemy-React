@@ -21,6 +21,16 @@ export default class App extends React.Component {
     })
   }
 
+  handleOnChangeMethod = (event) => {
+    this.setState({
+      persons:[
+        {name: "Lauront",age:12},
+        {name: event.target.value, age:32},
+        {name:"Paul",age:30}
+      ]
+    })
+  }
+
   render(){
     return(
       <div>
@@ -31,7 +41,7 @@ export default class App extends React.Component {
         <button onClick={() => this.handleChangeNames("Jordan")}>Switch Names2</button>
 
       <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.handleOnChangeMethod} />
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
       </div>
     )
