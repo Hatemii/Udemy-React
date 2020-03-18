@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Person from "./Person/Person"
 
-
-class App extends React.Component{
-  state ={
+const App = props => {
+  const[personState,setPersonState]=useState({
     persons:[
       {name:"Max",age:12},
       {name:"Larry",age:32},
       {name:"George",age:30}
     ],
     otherState: "some other value"
+  });
 
-  }
+  const [otherState,setOtherState] = useState({
+    otherState: "some other value 2"
+  });
 
-  handleChangeNames = () =>{
-    this.setState({
+  console.log(personState,otherState);
+
+
+  const handleChangeNames = () =>{
+    setPersonState({
       persons:[
         {name:"Maxim",age:12},
         {name:"Laront",age:32},
@@ -23,19 +28,19 @@ class App extends React.Component{
     })
   }
 
-  render(){
+
     return(
       <div>
-        <button onClick={this.handleChangeNames}>Switch Names</button>
+        <button onClick={handleChangeNames}>Switch Names</button>
 
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
+        <Person name={personState.persons[0].name} age={personState.persons[0].age} />
+        <Person name={personState.persons[1].name} age={personState.persons[1].age} />
+        <Person name={personState.persons[2].name} age={personState.persons[2].age} />
 
 
       </div>
     )
   }
-}
+
 
 export default App;
