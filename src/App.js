@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Person from "./Person/Person"
+import "./App.css"
 
-export default class App extends React.Component {
+export default class Example extends React.Component {
   state = {
     persons:[
       {name:"Max",age:12},
@@ -32,13 +33,23 @@ export default class App extends React.Component {
   }
 
   render(){
-    return(
-      <div>
-        {/*this is first way of changing*/}
-        <button onClick={this.handleChangeNames.bind(this, "Mark")}>Switch Names</button>
+    const style = {
+      backgroundColor: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor:"pointer"
+    }
 
-        {/*this is second way of changing*/}
-        <button onClick={() => this.handleChangeNames("Jordan")}>Switch Names2</button>
+    return(
+      <div className="App">
+        {/*this is first way of changing*/}
+        <button
+          style={style}
+          onClick={this.handleChangeNames.bind(this, "Mark")}>Switch Names</button>
+
+        {/*this is second way of changing
+        <button onClick={() => this.handleChangeNames("Jordan")}>Switch Names2</button>*/}
 
       <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.handleOnChangeMethod} />
