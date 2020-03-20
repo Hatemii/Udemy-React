@@ -13,16 +13,6 @@ export default class Example extends React.Component {
     showPersons: false
   }
 
- handleChangeNames = (newName) =>{
-    this.setState({
-      persons:[
-        {name:newName,age:12},
-        {name:"Laront",age:32},
-        {name:"Paul",age:30}
-      ]
-    })
-  }
-
   handleOnChangeMethod = (event) => {
     this.setState({
       persons:[
@@ -42,6 +32,15 @@ export default class Example extends React.Component {
   }
 
 
+  handleDeletePerson = (personIndex) => {
+    const delete_person = [...this.state.persons]
+    delete_person.splice(personIndex,1); {/* will remove only one element from array */}
+    this.setState({
+      persons: delete_person
+    })
+  }
+
+
   render(){
     const style = {
       backgroundColor: "white",
@@ -56,8 +55,10 @@ export default class Example extends React.Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map(xx => {
-            return <Person name={xx.name} age={xx.age} />
+          {this.state.persons.map((xx,remove) => {
+            return <Person
+              click = {() => this.handleDeletePerson(remove)}
+              name={xx.name} age={xx.age} />
            })}
         </div>
       )

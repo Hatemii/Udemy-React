@@ -10,6 +10,7 @@ const Person = (props) =>{
       {/* value={props.name} will show current name (old name) before we change
         ... if we do not use value={props.name} the textfield will be blank
       */}
+      <button type="button" onClick={props.click}>Remove</button>
     </div>
   )
 }
