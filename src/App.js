@@ -5,9 +5,9 @@ import "./App.css"
 export default class Example extends React.Component {
   state = {
     persons:[
-      {name:"Max",age:12},
-      {name:"Larry",age:32},
-      {name:"George",age:30}
+      {id:1, name:"Max",age:12},
+      {id:2, name:"Larry",age:32},
+      {id:3, name:"George",age:30}
     ],
     otherState: "some other value",
     showPersons: false
@@ -58,7 +58,8 @@ export default class Example extends React.Component {
           {this.state.persons.map((xx,remove) => {
             return <Person
               click = {() => this.handleDeletePerson(remove)}
-              name={xx.name} age={xx.age} />
+              name={xx.name} age={xx.age}
+              key={xx.id} />
            })}
         </div>
       )
