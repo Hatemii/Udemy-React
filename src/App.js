@@ -51,36 +51,25 @@ export default class Example extends React.Component {
       cursor:"pointer"
     }
 
-
+    let persons = null;
+    if (this.state.showPersons){
+      persons = (
+        <div>
+           <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+           <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.handleOnChangeMethod} />
+           <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
+         </div>
+         {/* React first check if is something inside Render then execute Return
+           So we can write code here and just return it down there in Return(..{inside curly}...)
+        */}
+      )
+    }
 
     return(
       <div className="App">
-        {/*this is first way of changing values
-          <button style={style} onClick={this.handleChangeNames.bind(this, "Mark")}>Switch Names</button>*/}
-
-        {/*this is second way of changing values
-        <button onClick={() => this.handleChangeNames("Jordan")}>Switch Names2</button>*/}
-
-
-        {/* SHOW OR HIDE BY CLICKING*/}
-          {/*  /// this is important to know (dont forget {} brackets) ///
-          { this.state.showPerson ? .....
-          	now this showPerson is (false) and we want to chose what we want to do
-          	when showPerson goes true ....   : null }
-            : is like "else" in if else condition that we cant put something there or leave it null "nothing to do" }
-           */}
-
-           <button style={style} onClick={this.handlePersonsToggle}>Toggle</button>
-           {
-             this.state.showPersons === true ?
-             <div>
-                <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-                <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.handleOnChangeMethod} />
-                <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
-              </div>
-              : null
-              }
-          </div>
-          )
-        }
-      }
+       <button style={style} onClick={this.handlePersonsToggle}>Toggle</button>
+         {persons}
+    </div>
+      )
+    }
+  }
