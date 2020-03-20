@@ -52,26 +52,22 @@ export default class Example extends React.Component {
     }
 
     let persons = null;
-    if (this.state.showPersons){
+
+    if (this.state.showPersons) {
       persons = (
         <div>
-           <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-           <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.handleOnChangeMethod} />
-           <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
-         </div>
-       )
+          {this.state.persons.map(xx => {
+            return <Person name={xx.name} age={xx.age} />
+           })}
+        </div>
+      )
     }
-
-    {/* React first check if is something inside Render then execute Return
-      So we can write code here and just return it down there in Return(..{inside curly}...)
-   */}
-
 
     return(
       <div className="App">
-       <button style={style} onClick={this.handlePersonsToggle}>Toggle</button>
+        <button style={style} onClick={this.handlePersonsToggle}>Toggle</button>
          {persons}
-    </div>
+       </div>
       )
     }
   }
