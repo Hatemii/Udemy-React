@@ -59,11 +59,13 @@ export default class Example extends React.Component {
            <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.handleOnChangeMethod} />
            <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
          </div>
-         {/* React first check if is something inside Render then execute Return
-           So we can write code here and just return it down there in Return(..{inside curly}...)
-        */}
-      )
+       )
     }
+
+    {/* React first check if is something inside Render then execute Return
+      So we can write code here and just return it down there in Return(..{inside curly}...)
+   */}
+
 
     return(
       <div className="App">
