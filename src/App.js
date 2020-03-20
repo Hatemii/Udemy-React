@@ -13,14 +13,35 @@ export default class Example extends React.Component {
     showPersons: false
   }
 
-  handleOnChangeMethod = (event) => {
-    this.setState({
-      persons:[
-        {name: "Lauront",age:12},
-        {name: event.target.value, age:32},
-        {name:"Paul",age:30}
-      ]
+  handleOnChangeMethod = (event, id) => {
+    const personIndex =  this.state.persons.findIndex(p =>{
+      return p.id === id
     })
+
+    {/* personIndex will hold index of the person in the array..
+      return true or false (if id of an person in array is equal with id that
+      we receiveed as an argument to this function)
+    */}
+
+    const person = {
+      ...this.state.persons[personIndex]
+    }
+    {/* then get the persons itself by reaching out to this.state.persons
+      and accessing the element at the person index */}
+
+      person.name = event.target.value
+      const persons = [...this.state.persons]
+      persons[personIndex] = person;
+
+      {/* update the person name .. we can do this cuz we got a coppy
+        we are not updating the original one
+        */}
+
+    this.setState({
+      persons: persons
+    })
+  {/* update persons array which is a coppy of the old array where we updated
+    one element with the updated person where we adjusted the name */}
   }
 
 
@@ -58,8 +79,11 @@ export default class Example extends React.Component {
           {this.state.persons.map((xx,remove) => {
             return <Person
               click = {() => this.handleDeletePerson(remove)}
-              name={xx.name} age={xx.age}
-              key={xx.id} />
+              name={xx.name}
+              age={xx.age}
+              key={xx.id}
+              changed={(event) => this.handleOnChangeMethod(event,xx.id)}
+              />
            })}
         </div>
       )
