@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Person from "./Person/Person"
-import Radium from "radium"
+import Radium,{StyleRoot} from "radium"
 import "./App.css"
 
 class Example extends React.Component {
@@ -114,12 +114,14 @@ class Example extends React.Component {
       }
 
     return(
-      <div className="App">
-        <p className={classes.join(" ")}>Some React Examples</p>
+      <StyleRoot>
+        <div className="App">
+          <p className={classes.join(" ")}>Some React Examples</p>
 
-        <button style={style} onClick={this.handlePersonsToggle}>Toggle</button>
-         {persons}
-       </div>
+          <button style={style} onClick={this.handlePersonsToggle}>Toggle</button>
+           {persons}
+         </div>
+      </StyleRoot>
       )
     }
   }
