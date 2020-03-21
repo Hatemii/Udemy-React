@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Person from "./Person/Person"
+import Radium from "radium"
 import "./App.css"
 
-export default class Example extends React.Component {
+class Example extends React.Component {
   state = {
     persons:[
       {id:1, name:"Max",age:12},
@@ -69,7 +70,11 @@ export default class Example extends React.Component {
       font: "inherit",
       border: "1px solid black",
       padding: "10px",
-      cursor:"pointer"
+      cursor:"pointer",
+      ":hover": {
+        backgroundColor: "lightgreen",
+        color: "black"
+      }
     }
 
     let persons = null;
@@ -89,6 +94,10 @@ export default class Example extends React.Component {
         </div>
       )
       style.backgroundColor = "red"
+      style[":hover"] = {
+        backgroundColor: "lightred",
+        color: "black"
+      }
     }
 
     {/* this is simple CSS className Dynamically
@@ -114,3 +123,5 @@ export default class Example extends React.Component {
       )
     }
   }
+
+export default Radium(Example)
