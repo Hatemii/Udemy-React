@@ -3,6 +3,19 @@ import Person from "./Person/Person"
 import styled from "styled-components"
 import "./App.css"
 
+
+const StyledButton = styled.button`
+  background-color: ${props => props.alt ? "red" : "green"};
+  color: white;
+  font: inherit;
+  border: 1px solid black;
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${props => props.alt ? "salmon" : "lightgreen"};
+    color: black;
+  }`
+
 class Example extends React.Component {
   state = {
     persons:[
@@ -64,21 +77,8 @@ class Example extends React.Component {
 
 
   render(){
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid black",
-      padding: "10px",
-      cursor:"pointer",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "black"
-      }
-    }
-
+    
     let persons = null;
-
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -93,11 +93,6 @@ class Example extends React.Component {
            })}
         </div>
       )
-      style.backgroundColor = "red"
-      style[":hover"] = {
-        backgroundColor: "lightred",
-        color: "black"
-      }
     }
 
     {/* this is simple CSS className Dynamically
@@ -116,8 +111,7 @@ class Example extends React.Component {
     return(
         <div className="App">
           <p className={classes.join(" ")}>Some React Examples</p>
-
-          <button style={style} onClick={this.handlePersonsToggle}>Toggle</button>
+          <StyledButton alt={this.state.showPersons} onClick={this.handlePersonsToggle}>Toggle</StyledButton>
            {persons}
          </div>
       )
