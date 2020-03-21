@@ -64,10 +64,11 @@ export default class Example extends React.Component {
 
   render(){
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
+      color: "white",
       font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
+      border: "1px solid black",
+      padding: "10px",
       cursor:"pointer"
     }
 
@@ -87,10 +88,26 @@ export default class Example extends React.Component {
            })}
         </div>
       )
+      style.backgroundColor = "red"
     }
+
+    {/* this is simple CSS className Dynamically
+    let classes = ["red","bold"].join(" ");
+    */}
+
+    {/* some if example with Dynamically */}
+      const classes = []
+      if(this.state.persons.length <= 2){
+        classes.push("red");  // classes = ["red"]
+      }
+      if(this.state.persons.length <= 1){
+        classes.push("bold"); // classes = ["red","bold"]
+      }
 
     return(
       <div className="App">
+        <p className={classes.join(" ")}>Some React Examples</p>
+
         <button style={style} onClick={this.handlePersonsToggle}>Toggle</button>
          {persons}
        </div>
