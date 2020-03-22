@@ -77,14 +77,16 @@ class Example extends React.Component {
 
 
   render(){
-    
+
     let persons = null;
     if (this.state.showPersons) {
       persons = (
         <div>
           {this.state.persons.map((xx,remove) => {
             return <Person
-              click = {() => this.handleDeletePerson(remove)}
+              click ={() =>{
+              if (window.confirm('Are you sure you wish to delete this item?'))
+              this.handleDeletePerson(remove)}}
               name={xx.name}
               age={xx.age}
               key={xx.id}
