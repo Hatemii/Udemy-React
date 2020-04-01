@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Person from "./Person/Person"
+import Person from "../components/Persons/Person/Person"
 import styled from "styled-components"
 import "./App.css"
 
@@ -32,32 +32,19 @@ class Example extends React.Component {
       return p.id === id
     })
 
-    {/* personIndex will hold index of the person in the array..
-      return true or false (if id of an person in array is equal with id that
-      we receiveed as an argument to this function)
-    */}
-
     const person = {
       ...this.state.persons[personIndex]
     }
-    {/* then get the persons itself by reaching out to this.state.persons
-      and accessing the element at the person index */}
 
       person.name = event.target.value
       const persons = [...this.state.persons]
       persons[personIndex] = person;
 
-      {/* update the person name .. we can do this cuz we got a coppy
-        we are not updating the original one
-        */}
-
     this.setState({
       persons: persons
     })
-  {/* update persons array which is a coppy of the old array where we updated
-    one element with the updated person where we adjusted the name */}
-  }
 
+  }
 
   handlePersonsToggle = () =>{
     const doesShow = this.state.showPersons;
@@ -69,7 +56,7 @@ class Example extends React.Component {
 
   handleDeletePerson = (personIndex) => {
     const delete_person = [...this.state.persons]
-    delete_person.splice(personIndex,1); {/* will remove only one element from array */}
+    delete_person.splice(personIndex,1);
     this.setState({
       persons: delete_person
     })
@@ -97,17 +84,13 @@ class Example extends React.Component {
       )
     }
 
-    {/* this is simple CSS className Dynamically
-    let classes = ["red","bold"].join(" ");
-    */}
 
-    {/* some if example with Dynamically */}
       const classes = []
       if(this.state.persons.length <= 2){
-        classes.push("red");  // classes = ["red"]
+        classes.push("red");
       }
       if(this.state.persons.length <= 1){
-        classes.push("bold"); // classes = ["red","bold"]
+        classes.push("bold");
       }
 
     return(
