@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Person from "../components/Persons/Person/Person"
+import Persons from "../components/Persons/Persons"
+import Cockpit from "../components/Cockpit/Cockpit"
 import styled from "styled-components"
 import "./App.css"
 
@@ -67,36 +68,20 @@ class Example extends React.Component {
 
     let persons = null;
     if (this.state.showPersons) {
-      persons = (
-        <div>
-          {this.state.persons.map((xx,remove) => {
-            return <Person
-              click ={() =>{
-              if (window.confirm('Are you sure you wish to delete this item?'))
-              this.handleDeletePerson(remove)}}
-              name={xx.name}
-              age={xx.age}
-              key={xx.id}
-              changed={(event) => this.handleOnChangeMethod(event,xx.id)}
-              />
-           })}
-        </div>
-      )
+      persons = <Persons
+          persons={this.state.persons}
+          clicked={this.handleDeletePerson}
+          changed={this.handleOnChangeMethod} />
+
     }
-
-
-      const classes = []
-      if(this.state.persons.length <= 2){
-        classes.push("red");
-      }
-      if(this.state.persons.length <= 1){
-        classes.push("bold");
-      }
 
     return(
         <div className="App">
-          <p className={classes.join(" ")}>Some React Examples</p>
-          <StyledButton alt={this.state.showPersons} onClick={this.handlePersonsToggle}>Toggle</StyledButton>
+           <Cockpit
+            showPersons = {this.state.showPersons}
+            persons = {this.state.persons}
+            clicked = {this.handlePersonsToggle}
+             />
            {persons}
          </div>
       )
